@@ -22,7 +22,7 @@
 
           <div v-if="success != ''">
             {{success}}
-            <img src="http://127.0.0.1:8000/storage/uploads/1627732403_mm.png" alt="">
+            <img src="http://127.0.0.1:8000/storage/uploads/1627740946_Slika zaslona s 2021-05-03 11-21-47.png" alt="">
           </div>
       </div>
   </div>
@@ -84,12 +84,14 @@ export default {
             let existingObj = this;
 
             let data = new FormData();
+
+            data.append('is_title_image', '1')
+
             data.append('file', this.file);
             data.append('title', 'Testni upload');
             data.append('body', 'Testni upload tekst.');
+            data.append('recommended', '0');
             data.append('category_id', 1);
-
-            console.log(data)
 
             api.post('/auth/articles/create', data)
             .then(function (res) {
