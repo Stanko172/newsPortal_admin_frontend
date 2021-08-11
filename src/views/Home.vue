@@ -1,15 +1,222 @@
 <template>
   <div>
-    <h1>Home</h1>
+
+    <el-row :gutter="10" style="margin-top: 1em;">
+      <el-col :span="6">
+
+        <!--Prvi card-->
+        <el-card class="info-card">
+          <el-row>
+            <el-col :span="8">
+              <i class="far fa-newspaper info-card-icon"></i>
+            </el-col>
+            <el-col :span="16" class="info-card-col">
+              <p class="info-card-text">10 000</p>
+            </el-col>
+          </el-row>
+        </el-card>
+
+      </el-col>
+
+      <el-col :span="6">
+
+        <!--Drugi card-->
+        <el-card class="info-card">
+          <el-row>
+            <el-col :span="8">
+              <i class="fas fa-eye info-card-icon"></i>
+            </el-col>
+            <el-col :span="16" class="info-card-col">
+              <p class="info-card-text">10 000</p>
+            </el-col>
+          </el-row>
+        </el-card>
+
+      </el-col>
+
+      <el-col :span="6">
+
+        <!--Treći card-->
+        <el-card class="info-card">
+          <el-row>
+            <el-col :span="8">
+              <i class="fas fa-comment info-card-icon"></i>
+            </el-col>
+            <el-col :span="16" class="info-card-col">
+              <p class="info-card-text">10 000</p>
+            </el-col>
+          </el-row>
+        </el-card>
+
+      </el-col>
+
+      <el-col :span="6">
+
+        <!--Četvrti card-->
+        <el-card class="info-card">
+          <el-row>
+            <el-col :span="8">
+              <i class="fas fa-users info-card-icon"></i>
+            </el-col>
+            <el-col :span="16" class="info-card-col">
+              <p class="info-card-text">10 000</p>
+            </el-col>
+          </el-row>
+        </el-card>
+
+      </el-col>
+
+      <!--Najpopularnije kategorije prema pregledima-->
+      <el-col :span="24">
+        <el-row>
+          <el-col :span="10" class="categories-container">
+
+            <el-row class="category-container" v-for="item in 9" :key="item">
+              <el-col class="category-number" :span="4">1</el-col>
+              <el-col class="categores-name" :span="20">
+                <p>Sport - 12 000</p>
+              </el-col>
+            </el-row>
+
+          </el-col>
+
+      <!--Chart-->
+          <el-col :span="14" class="chart-container">
+            <Chart />
+          </el-col>
+        </el-row>
+
+      <!--Table-->
+        <el-row justify="center">
+          <el-col :span="14" class="table-container">
+            <el-table
+            :data="tableData"
+            style="width: 100%">
+            <el-table-column
+              prop="date"
+              label="Date"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="Name"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="address"
+              label="Address">
+            </el-table-column>
+          </el-table>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import Chart from '../components/dashboard/Chart.vue'
 export default {
-
+  components:{
+    Chart
+  },
+  data(){
+    return{
+      tableData: [{
+        date: '2016-05-03',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }, {
+        date: '2016-05-02',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }, {
+        date: '2016-05-04',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }, {
+        date: '2016-05-01',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles'
+      }]
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped>
+.info-card{
+  padding: 2em;
+}
 
+.info-card-icon{
+  font-size: 54px;
+}
+
+.info-card-text{
+  font-size: 28px;
+}
+
+.info-card-col{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-newspaper{
+  color: #004379;
+}
+
+.fa-eye{
+  color: #00b300
+}
+
+.fa-comment{
+  color:	#FFCC00;
+}
+
+.fa-users{
+  color: #ED1C24;
+}
+
+/*category*/
+.categories-container{
+  overflow: scroll;
+  margin-top: 2em;
+  max-height: 600px;
+}
+
+.category-container{
+  margin-top: 0.3em;
+  color: #fff;
+}
+
+.category-number, .category-name{
+  padding: 1.3em;
+}
+
+.category-number{
+  background: #ED1C24;
+}
+
+.categores-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #004379;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/*Chart*/ 
+.chart-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Table*/
+.table-container{
+  margin-top: 2em;
+}
 </style>
