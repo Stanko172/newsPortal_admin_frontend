@@ -28,17 +28,23 @@ const routes = [
     component: () => import('../views/Dashboard.vue')
   },
   {
-    path: '/posts',
-    name: 'Posts',
+    path: '/vijesti',
+    name: 'Articles',
     meta: { authOnly: true },
-    component: () => import('../views/Posts.vue')
+    component: () => import('../views/Articles.vue')
   },
   {
-    path: '/contact',
-    name: 'Contact',
+    path: '/korisnici',
+    name: 'Users',
     meta: { authOnly: true },
-    component: () => import('../views/Contact.vue')
-  }
+    component: () => import('../views/Users.vue')
+  },
+  {
+    path: '/komentari',
+    name: 'Comments',
+    meta: { authOnly: true },
+    component: () => import('../views/Comments.vue')
+  },
   /*
   {
     path: '/about',

@@ -2,11 +2,16 @@
 
   <EventHub />
 
-  <router-view/>
+  <Layout />
   
 </template>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -17,10 +22,12 @@
 </style>
 
 <script>
+import Layout from './components/Layout.vue'
 import EventHub from './components/EventHub.vue'
 
 export default {
   components:{
+    Layout,
     EventHub
   }
 }
