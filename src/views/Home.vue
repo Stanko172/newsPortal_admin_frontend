@@ -11,7 +11,7 @@
               <i class="far fa-newspaper info-card-icon"></i>
             </el-col>
             <el-col :span="16" class="info-card-col">
-              <p class="info-card-text">10 000</p>
+              <p class="info-card-text">{{ data.articles_num }}</p>
             </el-col>
           </el-row>
         </el-card>
@@ -27,7 +27,7 @@
               <i class="fas fa-eye info-card-icon"></i>
             </el-col>
             <el-col :span="16" class="info-card-col">
-              <p class="info-card-text">10 000</p>
+              <p class="info-card-text">{{ data.views_num }}</p>
             </el-col>
           </el-row>
         </el-card>
@@ -43,7 +43,7 @@
               <i class="fas fa-comment info-card-icon"></i>
             </el-col>
             <el-col :span="16" class="info-card-col">
-              <p class="info-card-text">10 000</p>
+              <p class="info-card-text">{{ data.comments_num }}</p>
             </el-col>
           </el-row>
         </el-card>
@@ -59,7 +59,7 @@
               <i class="fas fa-users info-card-icon"></i>
             </el-col>
             <el-col :span="16" class="info-card-col">
-              <p class="info-card-text">10 000</p>
+              <p class="info-card-text">{{ data.users_num }}</p>
             </el-col>
           </el-row>
         </el-card>
@@ -71,10 +71,10 @@
         <el-row>
           <el-col :span="10" class="categories-container">
 
-            <el-row class="category-container" v-for="item in 9" :key="item">
-              <el-col class="category-number" :span="4">1</el-col>
+            <el-row class="category-container" v-for="(item, index) in data.views_per_category" :key="index">
+              <el-col class="category-number" :span="4">{{ index + 1}}</el-col>
               <el-col class="categores-name" :span="20">
-                <p>Sport - 12 000</p>
+                <p>{{ item.name }} - {{ item.sum }}</p>
               </el-col>
             </el-row>
 
@@ -82,31 +82,33 @@
 
       <!--Chart-->
           <el-col :span="14" class="chart-container">
-            <Chart />
+            <Chart :data="data.users_chart_data"/>
           </el-col>
         </el-row>
 
       <!--Table-->
-        <el-row justify="center">
-          <el-col :span="14" class="table-container">
+        <el-row >
+          <el-col :span="10" class="table-container">
             <el-table
-            :data="tableData"
+            :data="data.articles_per_user"
             style="width: 100%">
             <el-table-column
-              prop="date"
-              label="Date"
-              width="180">
-            </el-table-column>
-            <el-table-column
               prop="name"
-              label="Name"
-              width="180">
+              label="Ime">
             </el-table-column>
             <el-table-column
-              prop="address"
-              label="Address">
+              prop="total"
+              label="Ukupno">
+            </el-table-column>
+            <el-table-column
+              prop="created_at"
+              label="Datum kreiranja">
             </el-table-column>
           </el-table>
+          </el-col>
+          <el-col :span="14" class="chart-container">
+        <!--Comments chart-->
+            <Chart :data="data.comments_chart_data"/>
           </el-col>
         </el-row>
       </el-col>
@@ -115,6 +117,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import Chart from '../components/dashboard/Chart.vue'
 export default {
   components:{
@@ -140,6 +143,15 @@ export default {
         address: 'No. 189, Grove St, Los Angeles'
       }]
     }
+  },
+  computed:{
+    ...mapState('dashboard', ['data'])
+  },
+  methods:{
+    ...mapActions('dashboard', ['setData'])
+  },
+  created(){
+    this.setData()
   }
 }
 </script>

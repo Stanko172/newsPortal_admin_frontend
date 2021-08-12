@@ -1,6 +1,5 @@
 <template>
   <div>
-      <Navigation />
       <h1>Dashboard</h1>
       <div v-if="user">
         <h3>{{ user.name }}</h3>
@@ -31,10 +30,9 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import api from "../api/api"
-import Navigation from "../components/Navigation.vue"
 export default {
     components:{
-        Navigation
+
     },
     data(){
         return{

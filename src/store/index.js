@@ -1,5 +1,6 @@
 import { createLogger, createStore } from 'vuex'
 import auth from "./modules/auth"
+import dashboard from "./modules/dashboard"
 
 export default createStore({
   plugins: [createLogger()],
@@ -10,6 +11,7 @@ export default createStore({
   actions: {
   },
   modules: {
-    auth
+    auth,
+    dashboard
   }
 })
