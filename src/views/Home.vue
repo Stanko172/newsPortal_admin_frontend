@@ -80,15 +80,8 @@
 
           </el-col>
 
-      <!--Chart-->
-          <el-col :span="14" class="chart-container">
-            <Chart :data="data.users_chart_data"/>
-          </el-col>
-        </el-row>
-
-      <!--Table-->
-        <el-row >
-          <el-col :span="10" class="table-container">
+      <!--table-->
+          <el-col :span="14" class="table-container user-articles-container">
             <el-table
             :data="data.articles_per_user"
             style="width: 100%">
@@ -106,8 +99,15 @@
             </el-table-column>
           </el-table>
           </el-col>
-          <el-col :span="14" class="chart-container">
-        <!--Comments chart-->
+        </el-row>
+
+      <!--Chart-->
+        <el-row style="margin-top: 1em;">
+          <el-col :span="12" class="chart-container">
+            <Chart :data="data.users_chart_data"/>
+          </el-col>
+          <el-col :span="12" class="chart-container">
+      <!--Comments chart-->
             <Chart :data="data.comments_chart_data"/>
           </el-col>
         </el-row>
@@ -125,23 +125,7 @@ export default {
   },
   data(){
     return{
-      tableData: [{
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      }, {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      }, {
-        date: '2016-05-04',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      }, {
-        date: '2016-05-01',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      }]
+      
     }
   },
   computed:{
@@ -189,6 +173,13 @@ export default {
 
 .fa-users{
   color: #ED1C24;
+}
+
+/*User - Articles*/
+.user-articles-container{
+  overflow: scroll;
+  margin-top: 2em;
+  max-height: 600px;
 }
 
 /*category*/
