@@ -8,13 +8,7 @@
             <span><router-link to="/">Naslovnica</router-link></span>
             </el-space>
         </el-menu-item>
-        <el-menu-item index="2">
-            <el-space>
-            <i class="far fa-newspaper"></i>
-            <span><router-link to="/vijesti">Vijesti</router-link></span>
-            </el-space>
-        </el-menu-item>
-        <el-submenu index="3">
+        <el-submenu index="2">
             <template #title>
                 <el-space>
                 <i class="far fa-user"></i>
@@ -22,11 +16,18 @@
                 </el-space>
             </template>
         <el-menu-item-group>
-            <el-menu-item index="3-1">Permisije</el-menu-item>
-            <el-menu-item index="3-2">Role</el-menu-item>
-            <el-menu-item index="3-3">Korisnici</el-menu-item>
+            <el-menu-item index="2-1">Permisije</el-menu-item>
+            <el-menu-item index="2-2">Role</el-menu-item>
+            <el-menu-item index="2-3">Korisnici</el-menu-item>
         </el-menu-item-group>
         </el-submenu>
+        <el-menu-item index="3">
+            <el-space>
+            <i class="far fa-newspaper"></i>
+            <span><router-link to="/vijesti">Vijesti</router-link></span>
+            </el-space>
+        </el-menu-item>
+        
         <el-menu-item index="4">
             <el-space>
             <i class="far fa-comments"></i>
