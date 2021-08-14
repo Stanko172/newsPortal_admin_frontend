@@ -26,6 +26,16 @@ const actions = {
             commit('SET_ERRORS', error)
         })
     },
+    fetchCategories({ commit }){
+        api.get('admin/categories')
+        .then((response) => {
+            commit('SET_CATEGORIES', response.data)
+            commit('SET_LOADED', true)
+        })
+        .catch((error) => {
+            commit('SET_ERRORS', error)
+        })
+    },
 
 }
 
@@ -35,6 +45,7 @@ const mutations = {
         state.article = data.article
         state.categories = data.categories
     },
+    SET_CATEGORIES: (state, data) => state.categories = data,
     SET_ERRORS: (state, errors) => state.errors = errors,
     SET_LOADED: (state, loaded) => state.loaded = loaded
 }

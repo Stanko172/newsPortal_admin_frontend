@@ -51,6 +51,12 @@ const routes = [
     meta: { authOnly: true },
     component: () => import('../views/ArticleEdit.vue')
   },
+  {
+    path: '/vijesti/kreiraj/',
+    name: 'ArticleCreate',
+    meta: { authOnly: true },
+    component: () => import('../views/ArticleCreate.vue')
+  },
   /*
   {
     path: '/about',
