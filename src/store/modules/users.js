@@ -3,22 +3,22 @@ import api from "../../api/api"
 
 // State object
 const state = {
-    roles: [],
+    users: [],
     errors: [],
     loaded: false
 }
 
 // Getter functions
 const getters = {
-    getRoles: state => state.roles
+
 }
 
 // Actions 
 const actions = {
-    fetchRoles({ commit }){
-        api.get('admin/roles')
+    fetchUsers({ commit }){
+        api.get('admin/users')
         .then((response) => {
-            commit('SET_ROLES', response.data)
+            commit('SET_USERS', response.data)
             commit('SET_LOADED', true)
         })
         .catch((error) => {
@@ -26,27 +26,27 @@ const actions = {
         })
     },
     saveData({ commit, dispatch }, payload){
-        api.post('admin/roles/save', payload )
+        api.post('admin/users/save', payload )
         .then(() => {
-            dispatch('fetchRoles')
+            dispatch('fetchUsers')
         })
         .catch((error) => {
             commit('SET_ERRORS', error)
         })
     },
     deleteData({ commit, dispatch }, id){
-        api.post('admin/roles/delete', { id } )
+        api.post('admin/users/delete', { id } )
         .then(() => {
-            dispatch('fetchRoles')
+            dispatch('fetchUsers')
         })
         .catch((error) => {
             commit('SET_ERRORS', error)
         })
     },
     deleteRM({ commit, dispatch }, payload){
-        api.post('admin/roles/edit', payload  )
+        api.post('admin/users/edit', payload  )
         .then(() => {
-            dispatch('fetchRoles')
+            dispatch('fetchUsers')
         })
         .catch((error) => {
             commit('SET_ERRORS', error)
@@ -57,7 +57,7 @@ const actions = {
 
 // Mutations
 const mutations = {
-    SET_ROLES: (state, roles) => state.roles = roles,
+    SET_USERS: (state, users) => state.users = users,
     SET_ERRORS: (state, errors) => state.errors = errors,
     SET_LOADED: (state, loaded) => state.loaded = loaded
 

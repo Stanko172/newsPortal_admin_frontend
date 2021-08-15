@@ -18,7 +18,7 @@
         <el-menu-item-group>
             <el-menu-item index="2-1"><router-link to="/permisije">Permisije</router-link></el-menu-item>
             <el-menu-item index="2-2"><router-link to="/role">Role</router-link></el-menu-item>
-            <el-menu-item index="2-3">Korisnici</el-menu-item>
+            <el-menu-item index="2-3"><router-link to="/korisnici">Korisnici</router-link></el-menu-item>
         </el-menu-item-group>
         </el-submenu>
         <el-menu-item index="3">
