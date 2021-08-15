@@ -16,7 +16,7 @@
                 </el-space>
             </template>
         <el-menu-item-group>
-            <el-menu-item index="2-1">Permisije</el-menu-item>
+            <el-menu-item index="2-1"><router-link to="/permisije">Permisije</router-link></el-menu-item>
             <el-menu-item index="2-2">Role</el-menu-item>
             <el-menu-item index="2-3">Korisnici</el-menu-item>
         </el-menu-item-group>

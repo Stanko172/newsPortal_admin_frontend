@@ -57,6 +57,12 @@ const routes = [
     meta: { authOnly: true },
     component: () => import('../views/ArticleCreate.vue')
   },
+  {
+    path: '/permisije',
+    name: 'Permissions',
+    meta: { authOnly: true },
+    component: () => import('../views/Permissions.vue')
+  },
   /*
   {
     path: '/about',
