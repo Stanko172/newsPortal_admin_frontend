@@ -63,6 +63,12 @@ const routes = [
     meta: { authOnly: true },
     component: () => import('../views/Permissions.vue')
   },
+  {
+    path: '/role',
+    name: 'Roles',
+    meta: { authOnly: true },
+    component: () => import('../views/Roles.vue')
+  }
   /*
   {
     path: '/about',

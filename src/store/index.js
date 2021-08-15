@@ -4,6 +4,7 @@ import dashboard from "./modules/dashboard"
 import articles from "./modules/articles"
 import article from "./modules/article"
 import permissions from "./modules/permissions"
+import roles from "./modules/roles"
 
 export default createStore({
   plugins: [createLogger()],
@@ -18,6 +19,7 @@ export default createStore({
     dashboard,
     articles,
     article,
-    permissions
+    permissions,
+    roles
   }
 })

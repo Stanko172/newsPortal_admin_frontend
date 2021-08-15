@@ -3,22 +3,22 @@ import api from "../../api/api"
 
 // State object
 const state = {
-    permissions: [],
+    roles: [],
     errors: [],
     loaded: false
 }
 
 // Getter functions
 const getters = {
-    getPermissions: state => state.permissions
+
 }
 
 // Actions 
 const actions = {
-    fetchPermissions({ commit }){
-        api.get('admin/permissions')
+    fetchRoles({ commit }){
+        api.get('admin/roles')
         .then((response) => {
-            commit('SET_PERMISSIONS', response.data)
+            commit('SET_ROLES', response.data)
             commit('SET_LOADED', true)
         })
         .catch((error) => {
@@ -26,29 +26,38 @@ const actions = {
         })
     },
     saveData({ commit, dispatch }, payload){
-        api.post('admin/permissions/save', payload )
+        api.post('admin/roles/save', payload )
         .then(() => {
-            dispatch('fetchPermissions')
+            dispatch('fetchRoles')
         })
         .catch((error) => {
             commit('SET_ERRORS', error)
         })
     },
     deleteData({ commit, dispatch }, id){
-        api.post('admin/permissions/delete', { id } )
+        api.post('admin/roles/delete', { id } )
         .then(() => {
-            dispatch('fetchPermissions')
+            dispatch('fetchRoles')
         })
         .catch((error) => {
             commit('SET_ERRORS', error)
         })
-    }
+    },
+    deleteRM({ commit, dispatch }, payload){
+        api.post('admin/roles/edit', payload  )
+        .then(() => {
+            dispatch('fetchRoles')
+        })
+        .catch((error) => {
+            commit('SET_ERRORS', error)
+        })
+    },
 
 }
 
 // Mutations
 const mutations = {
-    SET_PERMISSIONS: (state, permissions) => state.permissions = permissions,
+    SET_ROLES: (state, roles) => state.roles = roles,
     SET_ERRORS: (state, errors) => state.errors = errors,
     SET_LOADED: (state, loaded) => state.loaded = loaded
 
