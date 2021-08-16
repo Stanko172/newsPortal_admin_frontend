@@ -28,10 +28,10 @@
             </el-space>
         </el-menu-item>
         
-        <el-menu-item index="4">
+        <el-menu-item index="4" v-if="$ability.can('categories_access', 'all')">
             <el-space>
             <i class="far fa-list-alt"></i>
-            <span><router-link to="/categories">Kategorije</router-link></span>
+            <span><router-link to="/kategorije">Kategorije</router-link></span>
             </el-space>
         </el-menu-item>
 
@@ -69,8 +69,12 @@
 </template>
 
 <script>
+import { ABILITY_TOKEN } from '@casl/vue';
 import { mapActions, mapState } from 'vuex'
   export default {
+    inject: {
+      $ability: { from: ABILITY_TOKEN }
+    },
     data() {
       return{
 
