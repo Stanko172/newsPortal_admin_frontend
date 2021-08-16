@@ -3,9 +3,12 @@
   <el-table
     :data="permissions.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))"
     style="width: 100%">
-    <el-table-column
-      label="Datum"
-      prop="created_at">
+    <el-table-column label="Datum">
+      <template #default="scope">
+        <span>
+          {{  moment(scope.row.created_at).format("YYYY-MM-DD HH:mm:ss")  }}
+        </span>
+      </template>
     </el-table-column>
     <el-table-column
       label="Naziv"
@@ -61,6 +64,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import moment from 'moment'
   export default {
     data() {
       return {
@@ -112,6 +116,7 @@ import { mapActions, mapState } from 'vuex'
     },
     created(){
         this.fetchPermissions()
+        this.moment = moment
     }
   }
 </script>

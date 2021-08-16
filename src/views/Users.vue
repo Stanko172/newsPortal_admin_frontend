@@ -70,13 +70,7 @@
         </el-tag>
     </div>
     </el-card>
-  <template #footer v-if="!editing">
-    <span class="dialog-footer">
-      <el-button @click="reset">Odustani</el-button>
-      <el-button type="primary" @click="createData">Spremi</el-button>
-    </span>
-  </template>
-  <template #footer v-else>
+  <template #footer>
     <span class="dialog-footer">
       <el-button @click="reset">Odustani</el-button>
       <el-button type="primary" @click="editData">Spremi</el-button>

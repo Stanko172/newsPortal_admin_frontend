@@ -16,9 +16,9 @@
                 </el-space>
             </template>
         <el-menu-item-group>
-            <el-menu-item index="2-1"><router-link to="/permisije">Permisije</router-link></el-menu-item>
-            <el-menu-item index="2-2"><router-link to="/role">Role</router-link></el-menu-item>
-            <el-menu-item index="2-3"><router-link to="/korisnici">Korisnici</router-link></el-menu-item>
+            <el-menu-item class="sublink" index="2-1"><router-link to="/permisije">Permisije</router-link></el-menu-item>
+            <el-menu-item class="sublink" index="2-2"><router-link to="/role">Role</router-link></el-menu-item>
+            <el-menu-item class="sublink" index="2-3"><router-link to="/korisnici">Korisnici</router-link></el-menu-item>
         </el-menu-item-group>
         </el-submenu>
         <el-menu-item index="3">
@@ -29,6 +29,13 @@
         </el-menu-item>
         
         <el-menu-item index="4">
+            <el-space>
+            <i class="far fa-list-alt"></i>
+            <span><router-link to="/categories">Kategorije</router-link></span>
+            </el-space>
+        </el-menu-item>
+
+        <el-menu-item index="5">
             <el-space>
             <i class="far fa-comments"></i>
             <span><router-link to="/komentari">Komentari</router-link></span>
@@ -49,7 +56,7 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <span>Tom</span>
+      <span v-if="user">{{ user.name }}</span>
     </el-header>
 
     <el-main>
@@ -62,16 +69,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
   export default {
     data() {
-      const item = {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      };
-      return {
-        tableData: Array(20).fill(item)
+      return{
+
       }
+    },
+    methods:{
+      ...mapActions('auth', ['logout', 'getUser']),
+    },
+    computed:{
+      ...mapState('auth', ['user'])
+    },
+    created(){
+      this.getUser()
     }
   };
 </script>
@@ -85,6 +97,11 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .sublink a{
+      color: #004379;
+      text-decoration: none;
     }
 
     .el-header {
