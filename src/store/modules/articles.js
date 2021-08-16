@@ -20,7 +20,8 @@ const getters = {
     },
     getArticlesCount: state => state.articles_count,
     getCategories: state => state.categories,
-    getAuthors: state => state.authors
+    getAuthors: state => state.authors,
+    getErrors: state => state.errors
 }
 
 // Actions 

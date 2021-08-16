@@ -99,7 +99,7 @@
 
   <!--Floating action button-->
   <a href="#" class="float">
-    <i class="fa fa-plus my-float"></i>
+   <router-link to="/vijesti/kreiraj"><i class="fa fa-plus my-float"></i></router-link>
   </a>
 </div>
 </template>
@@ -134,7 +134,7 @@ import { mapActions, mapGetters } from 'vuex'
       }
     },
     computed:{
-      ...mapGetters('articles', ['getArticles', 'getArticlesCount', 'getLoadingStatus', 'getCategories', 'getAuthors'])
+      ...mapGetters('articles', ['getArticles', 'getArticlesCount', 'getLoadingStatus', 'getCategories', 'getAuthors', 'getErrors'])
     },
     methods: {
       ...mapActions('articles', ['fetchData', 'filterData', 'deleteArticle']),
@@ -144,6 +144,22 @@ import { mapActions, mapGetters } from 'vuex'
       handleDelete(id) {
   
         this.deleteArticle({ id: id, filters: this.filters, rowsNum: this.rowsNum })
+
+        if(this.getErrors.length != 0){
+          const payload = {
+            title: 'Neuspjeh',
+            message: 'Članak nije izbrisan!',
+            type: 'error'
+          }
+          this.eventBus.emit('notification', payload)
+        }else{
+          const payload = {
+            title: 'Uspjeh',
+            message: 'Članak uspješno izbrisan!',
+            type: 'success'
+          }
+          this.eventBus.emit('notification', payload)
+        }
       },
       toggleFilters(){
         this.filtersShow = !this.filtersShow
@@ -176,6 +192,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 .my-float{
 	margin-top:22px;
+  color: white;
 }
 
 </style>

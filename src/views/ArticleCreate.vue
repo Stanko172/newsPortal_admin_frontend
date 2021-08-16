@@ -158,12 +158,31 @@ export default {
     data.append('category_name', this.article.category_name);
     console.log(data)
     api.post('admin/article/create', data)
-    .then(function (res) {
-        existingObj.success = res.data.success;
+    .then(function () {
+        existingObj = true;
+        console.log("redirecting...")
     })
-    .catch(function (err) {
-        existingObj.output = err;
+    .catch(function () {
+        existingObj = false;
     });
+
+    //Naknadno prepraviti samo na success i dodati za error
+    if(existingObj){
+      this.$router.push({ path: '/vijesti' })
+      const payload = {
+        title: 'Uspjeh',
+        message: 'Članak uspješno kreiran!',
+        type: 'success'
+      }
+      this.eventBus.emit('notification', payload)
+    }else{
+      const payload = {
+        title: 'Neuspjeh',
+        message: 'Članak nije kreiran!',
+        type: 'error'
+      }
+      this.eventBus.emit('notification', payload)
+    }
     }
   },
   created(){

@@ -26,8 +26,12 @@ export default {
     }
   },
   created () {
-    this.eventBus.on('test', (args) => {
-        alert(args)
+    this.eventBus.on('notification', (payload) => {
+      this.$notify({
+        title: payload.title,
+        message: payload.message,
+        type: payload.type
+      });
     })
   },
   watch: {
