@@ -2,10 +2,10 @@
   <el-container style="height: 100vh; border: 1px solid #eee">
   <el-aside width="230px">
     <el-menu >
-        <el-menu-item index="1">
+        <el-menu-item index="1" v-if="$ability.can('dashboard_access', 'all')">
             <el-space>
             <i class="fas fa-bars"></i>
-            <span><router-link to="/" v-if="$ability.can('dashboard_access', 'all')">Naslovnica</router-link></span>
+            <span><router-link to="/">Naslovnica</router-link></span>
             </el-space>
         </el-menu-item>
         <el-submenu index="2" v-if="$ability.can('users_manage_access', 'all')">
