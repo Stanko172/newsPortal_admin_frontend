@@ -116,8 +116,6 @@ async function handler() {
 
 
 router.beforeEach(async (to, from, next) => {
-  await handler()
-  console.log("Abilities from router: ", ability, ability.can('categories_access', 'all'))
   if (to.matched.some(record => record.meta.authOnly)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
@@ -127,6 +125,7 @@ router.beforeEach(async (to, from, next) => {
         query: { redirect: to.fullPath }
       });
     } else {
+      await handler()
       next();
     }
   } else if (to.matched.some(record => record.meta.guestOnly)) {
