@@ -5,10 +5,10 @@
         <el-menu-item index="1">
             <el-space>
             <i class="fas fa-bars"></i>
-            <span><router-link to="/">Naslovnica</router-link></span>
+            <span><router-link to="/" v-if="$ability.can('dashboard_access', 'all')">Naslovnica</router-link></span>
             </el-space>
         </el-menu-item>
-        <el-submenu index="2">
+        <el-submenu index="2" v-if="$ability.can('users_manage_access', 'all')">
             <template #title>
                 <el-space>
                 <i class="far fa-user"></i>
@@ -21,7 +21,7 @@
             <el-menu-item class="sublink" index="2-3"><router-link to="/korisnici">Korisnici</router-link></el-menu-item>
         </el-menu-item-group>
         </el-submenu>
-        <el-menu-item index="3">
+        <el-menu-item index="3" v-if="$ability.can('articles_access', 'all')">
             <el-space>
             <i class="far fa-newspaper"></i>
             <span><router-link to="/vijesti">Vijesti</router-link></span>
@@ -35,7 +35,7 @@
             </el-space>
         </el-menu-item>
 
-        <el-menu-item index="5">
+        <el-menu-item index="5" v-if="$ability.can('comments_access', 'all')">
             <el-space>
             <i class="far fa-comments"></i>
             <span><router-link to="/komentari">Komentari</router-link></span>

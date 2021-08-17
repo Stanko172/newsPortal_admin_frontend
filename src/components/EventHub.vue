@@ -5,16 +5,19 @@
 </template>
 
 <script>
-import api from '../api/api'
+//import api from '../api/api'
 
-import { AbilityBuilder, Ability } from '@casl/ability';
-import { ABILITY_TOKEN } from '@casl/vue';
+//import { AbilityBuilder, Ability } from '@casl/ability';
+//import { ABILITY_TOKEN } from '@casl/vue';
 export default {
   name: 'EventHub',
+  /*
   inject: {
       $ability: { from: ABILITY_TOKEN }
   },
+  */
   methods:{
+    /*
     updateAbility(newAbilities) {
       const { can, rules } = new AbilityBuilder(Ability);
 
@@ -24,6 +27,7 @@ export default {
 
       this.$ability.update(rules);
     }
+    */
   },
   created () {
     this.eventBus.on('notification', (payload) => {
@@ -33,7 +37,7 @@ export default {
         type: payload.type
       });
     })
-  },
+  },/*
   watch: {
     $route: {
       handler() {
@@ -45,5 +49,6 @@ export default {
       immediate: true
     }
   }
+  */
 }
 </script>

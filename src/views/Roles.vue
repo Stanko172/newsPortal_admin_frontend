@@ -13,13 +13,13 @@
     <el-table-column
       label="Permisije">
       <template #default="scope">
-            <el-row justify="start">
-                <el-col :span="5" v-for="(permission, index) in scope.row.permissions" :key="index" style="padding: 0.2em;">
-                    <el-tag>
+            <div>
+                <div class="tags-container">
+                    <el-tag v-for="(permission, index) in scope.row.permissions" :key="index" style="padding: 0.2em;">
                     {{ permission.title }}
                 </el-tag>
-                </el-col>
-            </el-row>
+                </div>
+            </div>
       </template>
     </el-table-column>
     
