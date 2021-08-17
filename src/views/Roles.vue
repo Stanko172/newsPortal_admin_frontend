@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="$ability.can('users_manage_access', 'all')">
   <el-table
     :data="roles.filter(data => !search || data.title.toLowerCase().includes(search.toLowerCase()))"
     style="width: 100%">
@@ -89,8 +89,12 @@
 </template>
 
 <script>
+import { ABILITY_TOKEN } from '@casl/vue';
 import { mapActions, mapGetters, mapState } from 'vuex'
   export default {
+    inject: {
+      $ability: { from: ABILITY_TOKEN }
+    },
     data() {
       return {
         showDialog: false,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$ability.can('dashboard_access', 'all')">
 
     <el-row :gutter="10" style="margin-top: 1em;">
       <el-col :span="6">
@@ -117,11 +117,15 @@
 </template>
 
 <script>
+import { ABILITY_TOKEN } from '@casl/vue';
 import { mapActions, mapState } from 'vuex'
 import Chart from '../components/dashboard/Chart.vue'
 export default {
   components:{
     Chart
+  },
+  inject: {
+      $ability: { from: ABILITY_TOKEN }
   },
   data(){
     return{

@@ -1,6 +1,6 @@
 
 <template>
-<div v-if="getLoadingStatus">
+<div v-if="getLoadingStatus && $ability.can('articles_access', 'all')">
   <el-row justify="end">
     <el-col :span="4">
       <el-button style="background: #004379; color: white;" @click="toggleFilters">{{ filtersShow ? 'Sakrij filtere' : 'Prikaži filtere' }} <i class="fas fa-filter"></i></el-button>
@@ -105,8 +105,12 @@
 </template>
 
 <script>
+import { ABILITY_TOKEN } from '@casl/vue';
 import { mapActions, mapGetters } from 'vuex'
   export default {
+    inject: {
+      $ability: { from: ABILITY_TOKEN }
+    },
     data() {
       return {
         filtersShow: false,
