@@ -22,12 +22,6 @@ const routes = [
     component: Login
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    meta: { authOnly: true },
-    component: () => import('../views/Dashboard.vue')
-  },
-  {
     path: '/vijesti',
     name: 'Articles',
     meta: { authOnly: true },

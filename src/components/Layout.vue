@@ -57,6 +57,7 @@
         </template>
       </el-dropdown>
       <span v-if="user">{{ user.name }}</span>
+      <el-button style="margin-left: 1em;" type="danger" size="small" @click="handleLogout">Logout</el-button>
     </el-header>
 
     <el-main>
@@ -82,6 +83,9 @@ import { mapActions, mapState } from 'vuex'
     },
     methods:{
       ...mapActions('auth', ['logout', 'getUser']),
+      handleLogout(){
+        this.logout()
+      }
     },
     computed:{
       ...mapState('auth', ['user'])
