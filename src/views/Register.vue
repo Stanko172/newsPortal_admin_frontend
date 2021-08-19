@@ -1,28 +1,57 @@
+
 <template>
-  <div>
-      Name
-      <input type="text" v-model="form.name"> <br>
-      e-mail
-      <input type="text" v-model="form.email"> <br>
-      password
-      <input type="text" v-model="form.password"> <br>
-      password confirmation
-      <input type="text" v-model="form.password_confirmation"> <br>
+  <div class="container">
+      <div class="center">
+        <el-row>
+            <el-col class="cw">
+                <h3>Registracija</h3>
+            </el-col>
+        </el-row>
 
-      <button @click.prevent="handleRegister">Register</button>
+        <el-row>
+            <el-col>
+                <el-input placeholder="Unesite korisničko ime" v-model="form.name"></el-input>
+            </el-col>
+        </el-row>
 
-      <div v-if="registerErrors">
-          {{ registerErrors }}
-      </div>
+        <el-row>
+            <el-col>
+                <el-input placeholder="Unesite e-mail" v-model="form.email"></el-input>
+            </el-col>
+        </el-row>
 
-      <div v-if="registerResponse">
-          {{ registerResponse }}
-      </div>
+        <el-row>
+            <el-col>
+                <el-input placeholder="Unesite lozinku" v-model="form.password" show-password></el-input>
+            </el-col>
+        </el-row>
 
-      <router-link to="/login">Login</router-link>
+        <el-row>
+            <el-col>
+                <el-input placeholder="Ponovite lozinku" v-model="form.password_confirmation" show-password></el-input>
+            </el-col>
+        </el-row>
+
+        <el-row class="mt">
+            <el-col>
+                <el-button type="success" round @click.prevent="handleRegister">Registracija</el-button>
+            </el-col>
+        </el-row>
+
+        <div class="mt">
+            <router-link to="/login">Prijava</router-link>
+        </div>  
+
+        <el-row class="mt">
+            <el-col class="cw">
+                <div v-if="registerErrors">
+                    {{ registerErrors }}
+                </div>
+            </el-col>
+        </el-row>
+    </div>
   </div>
 </template>
-
 <script>
 import { mapActions, mapState } from "vuex";
 export default {
@@ -47,13 +76,29 @@ export default {
     },
     mounted(){
         this.eventBus.on('test', (args) => {
-            console.log("yeaaa2")
             alert(args)
         })
     }
     }
 </script>
 
-<style>
 
+<style scoped>
+    .container{
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        place-items: center;
+    }
+    .center{
+        background: #004379;
+        padding: 5em;
+        border-radius: 1em;
+    }
+    .mt{
+        margin-top: 1em;
+    }
+    .cw{
+        color: #fff;
+    }
 </style>

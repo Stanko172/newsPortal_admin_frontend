@@ -1,14 +1,35 @@
 <template>
-  <div>
-      e-mail
-      <input type="text" v-model="form.email"> <br>
-      password
-      <input type="text" v-model="form.password"> <br>
+  <div class="container">
+      <div class="center">
+        <el-row>
+            <el-col class="cw">
+                <h3>Prijava</h3>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col>
+                <el-input placeholder="Unesite e-mail" v-model="form.email"></el-input>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col>
+                <el-input placeholder="Unesite lozinku" v-model="form.password" show-password></el-input>
+            </el-col>
+        </el-row>
 
-      <button @click.prevent="handleLogin">Login</button>
+        <el-row class="mt">
+            <el-col>
+                <el-button type="success" round @click.prevent="handleLogin">Prijava</el-button>
+            </el-col>
+        </el-row>
 
-    <div v-if="loginErrors">
-        {{ loginErrors }}
+        <el-row class="mt">
+            <el-col class="cw">
+                <div v-if="loginErrors">
+                    {{ loginErrors }}
+                </div>
+            </el-col>
+        </el-row>
     </div>
   </div>
 </template>
@@ -36,6 +57,22 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .container{
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        place-items: center;
+    }
+    .center{
+        background: #004379;
+        padding: 5em;
+        border-radius: 1em;
+    }
+    .mt{
+        margin-top: 1em;
+    }
+    .cw{
+        color: #fff;
+    }
 </style>

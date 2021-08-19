@@ -1,10 +1,46 @@
 <template>
+<div>
+  <EventHub/>
 
-  <EventHub />
-
-  <Layout />
+  <Layout v-if="status == 1"/>
+  <router-view v-else></router-view>
+</div>
   
 </template>
+
+<script>
+import Layout from './components/Layout.vue'
+import EventHub from './components/EventHub.vue'
+
+export default {
+  components:{
+    Layout,
+    EventHub
+  },
+  data(){
+    return{
+      status: null
+    }
+  },
+  watch: {
+    $route: {
+      handler() {
+        this.isLoggedIn() ? this.status = 1 : this.status = 0;
+      },
+      immediate: true
+    }
+  },
+  methods:{
+    isLoggedIn() {
+      return localStorage.getItem("auth");
+    }
+  },
+  created(){
+    this.isLoggedIn() ? this.status = 1 : this.status = 0;
+  }
+}
+
+</script>
 
 <style>
 *{
@@ -20,16 +56,4 @@
   color: #2c3e50;
 }
 </style>
-
-<script>
-import Layout from './components/Layout.vue'
-import EventHub from './components/EventHub.vue'
-
-export default {
-  components:{
-    Layout,
-    EventHub
-  }
-}
-</script>
 

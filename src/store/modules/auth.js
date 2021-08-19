@@ -6,6 +6,7 @@ import router from "../../router";
 // State object
 const state = {
     user: null,
+    status: null,
     registerErrors: null,
     loginErrors: null,
 }
@@ -48,6 +49,7 @@ const actions = {
         })
     },
     getUser({ commit }){
+
         api.get("/user")
         .then((response) => {
             commit('SET_USER', response.data)
@@ -59,6 +61,7 @@ const actions = {
 // Mutations
 const mutations = {
     SET_USER: (state, user) => state.user = user,
+    SET_STATUS: (state, data) => state.status = data.status,
     UPDATE_REGISTER_ERRORS: (state, errors) => state.registerErrors = errors.response.data.errors,
     UPDATE_LOGIN_ERRORS: (state, errors) => state.loginErrors = errors.response.data.errors,
 }
